@@ -1,0 +1,61 @@
+<head>
+  <meta charset='utf-8' />
+  <title>Bike Share Mapping Example</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+  <!-- CSS Imports -->
+  <link rel="stylesheet" href="css/leaflet.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</style>
+</head>
+
+<script>
+var searchScript = function() {
+  var input = parseInt($("input[id=number-input1]").val()); //.toUpperCase(
+    var same = _.where(allStops, { Stopid: input });
+    if (event.keyCode === 13) {
+      var latLngs = [same[0].Latitude, same[0].Longitude];
+      map.panTo(latLngs);
+      map.setZoom(18);
+      // any way to open the pop up here?
+    }
+    return same;
+  };
+</script>
+
+<body>
+  <div class = "sidebar">
+    <h1> Bike Share Mapping Example </h1>
+    <p> T. Andrew Simpson </p>
+    <p> Questions: mail@tandrewsimpson.com </p>
+    <!-- <p> <label id="number-label1" for="number-input1">Stop ID Search:</label> </p>
+    <p><input id="number-input1" class="input-number" style = "height: 24px;
+    width: 250px" type="number" placeholder="Enter Stop ID then press 'enter'" value="" enabled onkeyup="searchScript()"> </p> -->
+  </div>
+
+
+  <div class = "map" id='map'></div>
+
+
+  <!-- Javascript Imports Here -->
+  <script src="js/leaflet.js"></script>
+  <script src="js/leaflet.ajax.js"></script>
+  <script src="js/underscore.js"></script>
+  <script src="js/jquery-2.2.0.js"></script>
+  <script src="js/index.js"></script>
+
+  <script>
+  // set up map to begin
+  main();
+  // creat an intervall counter (30000 = 30 secs)
+  setInterval(myMethod, 30000);
+
+  // every x seconds, remove the old layers and call main() again
+  function myMethod() {
+    console.log("reloading");
+    map.removeLayer(stations);
+    main();
+  }
+  </script>
+</body>
+</html>
